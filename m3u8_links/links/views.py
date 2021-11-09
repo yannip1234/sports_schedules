@@ -19,7 +19,7 @@ def index(response):
     nfl = f'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard'
     res = requests.get(url)
     obj = json.loads(res.content, object_hook=lambda d: SimpleNamespace(**d))
-
+    obj.dates = sorted(obj.dates, key=lambda x: x.date, reverse=True)
     res_nfl = requests.get(nfl)
     nfl = json.loads(res_nfl.content, object_hook=lambda d: SimpleNamespace(**d))
     nfl.events = sorted(nfl.events, key=lambda x: x.date, reverse=True)
