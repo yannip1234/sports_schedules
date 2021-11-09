@@ -1,0 +1,78 @@
+{% extends "links/base.html" %}
+{% load parse_date %}
+{% load parse_time %}
+{% block content %}
+    {% if games %}
+        <div class="container">
+            {#            <h1>MLB Week Schedule</h1>#}
+            <h1 id="nfl">NFL Week Schedule</h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for game in games %}
+
+                    <div class="col">
+                        <h5 class="text-center">{{ game.date|parse_time:"NFL"|date:"D, M d"}}</h5>
+                        <div class="card bg-dark ">
+                            <div class="card-body">
+<img class="team img-fluid rounded float-start mx-2" src="{{ game.competitions.0.competitors.1.team.logo }}">
+                                <img class="team  rounded float-end" src="{{ game.competitions.0.competitors.0.team.logo }}">
+
+                                <h5 class="card-title text-center">
+
+
+                                        {% if game.competitions.0.competitors.0.winner == False %}
+                                        <p><strong class="winner">{{ game.competitions.0.competitors.1.team.displayName }}</strong>
+                                             at {{ game.competitions.0.competitors.0.team.displayName }}
+                                        </p>
+                                    {% elif game.competitions.0.competitors.1.winner == False %}
+                                        <p>{{ game.competitions.0.competitors.1.team.displayName }} at <strong
+                                                class="winner">{{ game.competitions.0.competitors.0.team.displayName }}</strong>
+                                        </p>
+                                    {% else %}
+                                        <p>{{ game.competitions.0.competitors.1.team.displayName }} at {{ game.competitions.0.competitors.0.team.displayName }}</p>
+
+                                    {% endif %}
+                                    </h5>
+
+                                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                <p class="card-text text-center">
+                                    {% if game.competitions.0.competitors.0.winner == False %}
+                                        <strong class="card-link">Score: {{ game.competitions.0.competitors.1.score }}
+                                            - {{ game.competitions.0.competitors.0.score }}</strong>
+                                    {% elif game.competitions.0.competitors.1.winner == False %}
+                                        <strong class="card-link">Score: {{ game.competitions.0.competitors.0.score }}
+                                            - {{ game.competitions.0.competitors.1.score }}</strong>
+                                    {% else %}
+                                        <strong class="card-link">Score: --</strong>
+
+                                    {% endif %}
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <h1>NFL Week Schedule</h1>
+            <div class="row justify-content-center">
+                <div class="col justify-content-center">
+                    <div class="card bg-dark ">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">No games.</h5>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {#    {% for game_datum in game_data %}#}
+    {#        <p>{{game_datum.info}}</p>#}
+    {#        <p>{{ game_datum.teams.name }}</p>#}
+    {##}
+    {#    {% endfor %}#}
+
+{% endblock %}

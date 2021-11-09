@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./m3u8_links
+    command: gunicorn m3u8_links.wsgi:application --bind 0.0.0.0:8000
+    expose:
+      - 8000
+    env_file:
+      - ./.env.prod
+  nginx:
+    build: ./nginx
+    ports:
+      - 4321:80
+    depends_on:
+      - web

@@ -1,0 +1,19 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Boston Celtics @ Washington Wizards ",Boston Celtics @ Washington Wizards 
+https://af36a585c8c1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.214708128504.channel.xfSLWegH8UyY.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Toronto Raptors @ Indiana Pacers ",Toronto Raptors @ Indiana Pacers 
+https://49356ad91ca3.eu-west-1.playback.live-video.net/api/video/v1/eu-west-1.214708128504.channel.X2HpPQrXI0bd.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Brooklyn Nets @ Miami Heat ",Brooklyn Nets @ Miami Heat 
+https://f607c33b0869.us-west-2.playback.live-video.net/api/video/v1/us-west-2.214708128504.channel.TadtnXQB8KyW.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Orlando Magic @ Charlotte Hornets ",Orlando Magic @ Charlotte Hornets 
+https://f607c33b0869.us-west-2.playback.live-video.net/api/video/v1/us-west-2.214708128504.channel.npy65uhfb2w7.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Portland Trail Blazers @ Memphis Grizzlies ",Portland Trail Blazers @ Memphis Grizzlies 
+https://49356ad91ca3.eu-west-1.playback.live-video.net/api/video/v1/eu-west-1.214708128504.channel.X2HpPQrXI0bd.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Phoenix Suns @ Sacramento Kings ",Phoenix Suns @ Sacramento Kings 
+https://f607c33b0869.us-west-2.playback.live-video.net/api/video/v1/us-west-2.214708128504.channel.npy65uhfb2w7.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="New Orleans Pelicans @ Atlanta Hawks ",New Orleans Pelicans @ Atlanta Hawks 
+https://49356ad91ca3.eu-west-1.playback.live-video.net/api/video/v1/eu-west-1.214708128504.channel.gWnJ0EylluP3.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Oklahoma City Thunder @ Los Angeles Lakers ",Oklahoma City Thunder @ Los Angeles Lakers 
+https://49356ad91ca3.eu-west-1.playback.live-video.net/api/video/v1/eu-west-1.214708128504.channel.WdHKY22vjhrB.m3u8
+#EXTINF:-1 tvg-id="NBA.us" tvg-country="US" tvg-language="English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/NBA_TV.svg/1200px-NBA_TV.svg.png" group-title="Los Angeles Clippers @ Cleveland Cavaliers ",Los Angeles Clippers @ Cleveland Cavaliers 
+https://2e82efc90f33.us-west-2.playback.live-video.net/api/video/v1/us-west-2.683842652785.channel.TltiEHvbgnbd.m3u8

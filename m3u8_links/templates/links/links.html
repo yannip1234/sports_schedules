@@ -1,0 +1,36 @@
+{% extends "links/base.html" %}
+{% block content %}
+
+    {% if games %}
+        <h1> Links </h1>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for game in games %}
+{#                    <p>{{ game.title }}</p>#}
+{#                    <a href="{{ game.link }}">{{ game.link }}</a>#}
+
+                            <div class="col">
+                                {#                            <h5 class="text-center">{{ date.date|parse_date|date:"D, M d"}}</h5>#}
+                                <div class="card bg-dark ">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">{{ game.title }}</h5>
+
+                                        <h6 class="card-subtitle mb-2 text-muted">HI</h6>
+                                        <p class="card-text">HI</p>
+
+
+                                        <strong class="card-link"><a href="{{ game.link }}">{{ game.link }}</a></strong>
+
+                                    </div>
+                                </div>
+                            </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% else %}
+        <p>No links</p>
+    {% endif %}
+
+{% endblock %}
+
