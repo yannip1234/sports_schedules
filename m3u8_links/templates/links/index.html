@@ -3,7 +3,7 @@
 {% load parse_time %}
 {% block content %}
     {% if dates %}
-        <div class="container">
+        <div class="container pb-5">
 {#            <h1>MLB Week Schedule</h1>#}
         <h1 id="mlb">MLB World Series Schedule</h1>
             <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -12,7 +12,7 @@
 
                         <div class="col">
                             <h5 class="text-center">{{ date.date|parse_date|date:"D, M d"}}</h5>
-                            <div class="card bg-dark ">
+                            <div class="card bg-dark">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">
 
@@ -77,7 +77,7 @@
             </div>
         </div>
     {% else %}
-        <div class="container">
+        <div class="container pb-5">
             <h1>MLB Week Schedule</h1>
             <div class="row justify-content-center">
                 <div class="col justify-content-center">
@@ -99,7 +99,7 @@
     {#    {% endfor %}#}
 {% if games_nfl %}
             {#            <h1>MLB Week Schedule</h1>#}
-    <div class="container">
+    <div class="container pb-5">
             <h1 id="nfl">NFL Week Schedule</h1>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for game in games_nfl %}
@@ -153,7 +153,7 @@
             </div>
     </div>
     {% else %}
-        <div class="container">
+        <div class="container pb-5">
             <h1>NFL Week Schedule</h1>
             <div class="row justify-content-center">
                 <div class="col justify-content-center">
