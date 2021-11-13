@@ -2,7 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.today, name='today'),
+    path('week', views.week, name='week'),
     path('test', views.test),
     path('nba', views.NBA),
     path('nba/m3u', views.NBA_m3u8),

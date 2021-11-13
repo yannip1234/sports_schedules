@@ -2,13 +2,13 @@
 {% load parse_date %}
 {% load parse_time %}
 {% block content %}
-    {% if games %}
-        <div class="container">
+ {% if games_nhl %}
             {#            <h1>MLB Week Schedule</h1>#}
+    <div class="container pb-5">
             <h1 id="nfl">NFL Week Schedule</h1>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                {% for game in games %}
-
+                {% for game in games_nhl %}
+                {{ games_nhl.length }}
                     <div class="col">
                         <h5 class="text-center">{{ game.date|parse_time:"NFL"|date:"D, M d"}}</h5>
                         <div class="card bg-dark ">
@@ -33,7 +33,11 @@
                                     {% endif %}
                                     </h5>
 
-                                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">
+
+                                        {{ game.date|parse_time:"NFL"|date:"g:i A" }}
+
+                                </h6>
                                 <p class="card-text text-center">
                                     {% if game.competitions.0.competitors.0.winner == False %}
                                         <strong class="card-link">Score: {{ game.competitions.0.competitors.1.score }}
@@ -52,9 +56,9 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
+    </div>
     {% else %}
-        <div class="container">
+        <div class="container pb-5">
             <h1>NFL Week Schedule</h1>
             <div class="row justify-content-center">
                 <div class="col justify-content-center">
@@ -74,5 +78,4 @@
     {#        <p>{{ game_datum.teams.name }}</p>#}
     {##}
     {#    {% endfor %}#}
-
 {% endblock %}

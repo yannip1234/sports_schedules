@@ -8,8 +8,40 @@ import requests
 import json
 from datetime import datetime, timedelta
 
+def today(response):
+    now = datetime.now()
+    monday = (now - timedelta(days=now.weekday()))
+    sunday = monday + timedelta(days=6)
+    # url = f'http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&startDate={(monday - timedelta(days=7)).strftime("%Y-%m-%d")}&endDate={sunday.strftime("%Y-%m-%d")}'
+    # url = f'http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&startDate=2021-10-26&endDate=2021-10-7&teamId=111'
+    url = f'http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&startDate=2021-10-26&endDate=2021-11-03'
+    nfl = f'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates={datetime.now().strftime("%Y%m%d")}'
+    # nhl = f'https://statsapi.web.nhl.com/api/v1/schedule?startDate={monday.strftime("%Y-%m-%d")}&endDate={sunday.strftime("%Y-%m-%d")}'
+    nhl = f'http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates={datetime.now().strftime("%Y%m%d")}&limit=100'
+    res = requests.get(url)
+    obj = json.loads(res.content, object_hook=lambda d: SimpleNamespace(**d))
+    obj.dates = sorted(obj.dates, key=lambda x: x.date, reverse=True)
+    res_nfl = requests.get(nfl)
+    nfl = json.loads(res_nfl.content, object_hook=lambda d: SimpleNamespace(**d))
+    nfl.events = sorted(nfl.events, key=lambda x: x.date, reverse=True)
+    # res_nhl = requests.get(nhl)
+    # nhl = json.loads(res_nhl.content, object_hook=lambda d: SimpleNamespace(**d))
+    # nhl.dates = sorted(nhl.dates, key=lambda x: x.date, reverse=True)
+    res_nhl = requests.get(nhl)
+    nhl = json.loads(res_nhl.content, object_hook=lambda d: SimpleNamespace(**d))
+    nhl.events = sorted(nhl.events, key=lambda x: x.date, reverse=True)
+    # l=[]
+    # for date in obj.dates:
+    #     for game in date.games:
+    #         l.append(json.loads(requests.get(f'https://statsapi.mlb.com/api/v1/game/{game.gamePk}/boxscore').content, object_hook=lambda d: SimpleNamespace(**d)))
+    return render(response, 'links/index.html', {
+        'dates': obj.dates,
+        'games_nfl': nfl.events,
+        'games_nhl': nhl.events
+        # 'game_data': l
+    })
 
-def index(response):
+def week(response):
     now = datetime.now()
     monday = (now - timedelta(days=now.weekday()))
     sunday = monday + timedelta(days=6)
@@ -17,20 +49,29 @@ def index(response):
     # url = f'http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&startDate=2021-10-26&endDate=2021-10-7&teamId=111'
     url = f'http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&startDate=2021-10-26&endDate=2021-11-03'
     nfl = f'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard'
+    # nhl = f'https://statsapi.web.nhl.com/api/v1/schedule?startDate={monday.strftime("%Y-%m-%d")}&endDate={sunday.strftime("%Y-%m-%d")}'
+    nhl = f'http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates={monday.strftime("%Y%m%d")}-{sunday.strftime("%Y%m%d")}&limit=100'
+    print(nhl)
     res = requests.get(url)
     obj = json.loads(res.content, object_hook=lambda d: SimpleNamespace(**d))
     obj.dates = sorted(obj.dates, key=lambda x: x.date, reverse=True)
     res_nfl = requests.get(nfl)
     nfl = json.loads(res_nfl.content, object_hook=lambda d: SimpleNamespace(**d))
     nfl.events = sorted(nfl.events, key=lambda x: x.date, reverse=True)
-
+    # res_nhl = requests.get(nhl)
+    # nhl = json.loads(res_nhl.content, object_hook=lambda d: SimpleNamespace(**d))
+    # nhl.dates = sorted(nhl.dates, key=lambda x: x.date, reverse=True)
+    res_nhl = requests.get(nhl)
+    nhl = json.loads(res_nhl.content, object_hook=lambda d: SimpleNamespace(**d))
+    nhl.events = sorted(nhl.events, key=lambda x: x.date, reverse=True)
     # l=[]
     # for date in obj.dates:
     #     for game in date.games:
     #         l.append(json.loads(requests.get(f'https://statsapi.mlb.com/api/v1/game/{game.gamePk}/boxscore').content, object_hook=lambda d: SimpleNamespace(**d)))
     return render(response, 'links/index.html', {
         'dates': obj.dates,
-        'games_nfl': nfl.events
+        'games_nfl': nfl.events,
+        'games_nhl': nhl.events
         # 'game_data': l
     })
 
@@ -41,17 +82,18 @@ def test(response):
     sunday = monday + timedelta(days=6)
     # url = f'http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&startDate={(monday - timedelta(days=7)).strftime("%Y-%m-%d")}&endDate={sunday.strftime("%Y-%m-%d")}'
     # url = f'http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&startDate=2021-10-26&endDate=2021-10-7&teamId=111'
-    url = f'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard'
-
-    res = requests.get(url)
-    obj = json.loads(res.content, object_hook=lambda d: SimpleNamespace(**d))
-    obj.events = sorted(obj.events, key=lambda x: x.date, reverse=True)
+    # nhl = f'http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates={monday.strftime("%Y%m%d")}-{sunday.strftime("%Y%m%d")}'
+    nhl = 'http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20211113-20211114'
+    res_nhl = requests.get(nhl)
+    nhl = json.loads(res_nhl.content, object_hook=lambda d: SimpleNamespace(**d))
+    nhl.events = sorted(nhl.events, key=lambda x: x.date, reverse=True)
+    # print(nhl.events)
     # l=[]
     # for date in obj.dates:
     #     for game in date.games:
     #         l.append(json.loads(requests.get(f'https://statsapi.mlb.com/api/v1/game/{game.gamePk}/boxscore').content, object_hook=lambda d: SimpleNamespace(**d)))
     return render(response, 'links/test.html', {
-        'games': obj.events,
+        'games_nhl': nhl.events
         # 'game_data': l
     })
 
